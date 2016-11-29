@@ -76,10 +76,8 @@
         android:id="@+id/editEmail"
         android:textColor="@android:color/darker_gray"
         android:hint="Type your email"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/txttitle"
-        android:layout_marginStart="219dp"
-        android:layout_marginBottom="65dp" />
+        android:layout_below="@+id/txttitle"
+        android:layout_alignStart="@+id/txttitle" />
 
 </RelativeLayout>
 
