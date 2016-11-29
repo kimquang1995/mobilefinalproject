@@ -36,26 +36,14 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:layout_marginTop="21dp"
-        android:id="@+id/editEmail"
-        android:text="Type your email"
-        android:textColor="@android:color/darker_gray"
-        android:layout_below="@+id/txttitle"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editPassword"
-        android:text="Password"
         android:layout_below="@+id/editEmail"
         android:layout_alignLeft="@+id/editEmail"
         android:layout_alignStart="@+id/editEmail"
-        android:layout_marginTop="11dp" />
+        android:layout_marginTop="11dp"
+        android:hint="Password" />
 
     <CheckBox
         android:text="Remember me"
@@ -79,6 +67,19 @@
         android:layout_marginTop="14dp"
         android:background="@color/colorAccent"
         android:textColor="@android:color/background_light" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editEmail"
+        android:textColor="@android:color/darker_gray"
+        android:hint="Type your email"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/txttitle"
+        android:layout_marginStart="219dp"
+        android:layout_marginBottom="65dp" />
 
 </RelativeLayout>
 
