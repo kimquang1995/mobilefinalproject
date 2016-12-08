@@ -1,21 +1,48 @@
 package mobile.atsm.atsm_wmp_finalproject;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.sql.Connection;
+
+import Controller.Account_Control;
+import Ultilities.DatabaseConnection;
 
 public class MainActivity extends AppCompatActivity {
-
+    Account_Control ctr_account;
+    DatabaseConnection db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        db = new DatabaseConnection();
+        Connection conn = db.CONN();
+        ctr_account = new Account_Control(conn);
+        final EditText etEmail = (EditText) findViewById(R.id.editEmail);
+        final EditText etPass = (EditText) findViewById(R.id.editPassword);
+        final String sMail = etEmail.getText().toString();
+        final String sPass = etPass.getText().toString();
+        findViewById(R.id.btnSignin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String sMail = etEmail.getText().toString();
+                    String sPass = etPass.getText().toString();
+                    if (ctr_account.CheckLogin(sMail, sPass)) {
+                        Toast.makeText(MainActivity.this, "Login Thanh cong", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Login That bai", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
