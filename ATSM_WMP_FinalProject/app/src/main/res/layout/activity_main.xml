@@ -43,7 +43,8 @@
         android:layout_alignLeft="@+id/editEmail"
         android:layout_alignStart="@+id/editEmail"
         android:layout_marginTop="11dp"
-        android:hint="Password" />
+        android:hint="Password"
+        android:layout_alignEnd="@+id/editEmail" />
 
     <CheckBox
         android:text="Remember me"
@@ -77,7 +78,8 @@
         android:textColor="@android:color/darker_gray"
         android:hint="Type your email"
         android:layout_below="@+id/txttitle"
-        android:layout_alignStart="@+id/txttitle" />
+        android:layout_alignStart="@+id/txttitle"
+        android:layout_alignEnd="@+id/txttitle" />
 
 </RelativeLayout>
 
