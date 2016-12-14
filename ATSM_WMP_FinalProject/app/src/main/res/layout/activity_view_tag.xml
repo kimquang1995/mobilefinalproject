@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:text="Save"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/btnSaveViewTag"
+            android:layout_gravity="left"/>
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:id="@+id/btnCancelViewTag" />
+    </GridLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edtViewNameTag"
+        android:hint="Name Tag" />
+
+    <TextView
+        android:text="Choose Stakeholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txvViewStakeholderTag"
+        android:textSize="18sp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lstViewTag" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+</LinearLayout>
