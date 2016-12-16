@@ -1,5 +1,6 @@
 package mobile.atsm.atsm_wmp_finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -41,8 +42,20 @@ public class Login extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Intent intent = new Intent(Login.this,ViewTags.class);
+                startActivity(intent);
+                finish();
             }
         });
+        findViewById(R.id.btnSignup).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this,ViewTasks.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     @Override

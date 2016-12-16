@@ -23,13 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GUI_Main" />
+        <activity android:name=".ViewTags" />
         <activity android:name=".AddTag" />
-        <activity android:name=".Add_a_Tag" />
+        <activity android:name=".ViewTasks" />
         <activity android:name=".AddTask" />
-        <activity android:name=".Add_a_Task" />
-        <activity android:name=".View_Tag" />
-        <activity android:name=".View_Task"></activity>
+        <activity android:name=".EditTag" />
+        <activity android:name=".EditTask"></activity>
     </application>
 
 </manifest>
