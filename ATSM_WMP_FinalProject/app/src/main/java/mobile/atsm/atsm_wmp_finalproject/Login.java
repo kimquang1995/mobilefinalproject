@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -15,12 +16,18 @@ import Controller.Account_Control;
 import Ultilities.DatabaseConnection;
 
 public class Login extends AppCompatActivity {
+    RelativeLayout login;
+
     Account_Control ctr_account;
     DatabaseConnection db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_login);
+        // Giao dien background
+        login = (RelativeLayout)findViewById(R.id.activity_main);
+        login.setBackgroundResource(R.drawable.background2);
+
         db = new DatabaseConnection();
         Connection conn = db.CONN();
         ctr_account = new Account_Control(conn);
