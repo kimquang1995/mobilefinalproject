@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -28,7 +29,8 @@
         <activity android:name=".ViewTasks" />
         <activity android:name=".AddTask" />
         <activity android:name=".EditTag" />
-        <activity android:name=".EditTask"></activity>
+        <activity android:name=".EditTask" />
+        <activity android:name=".SignUp"></activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

@@ -7,13 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 public class Login extends AppCompatActivity {
-
+RelativeLayout acitivitymain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_login);
+        // Set background
+        acitivitymain = (RelativeLayout)findViewById(R.id.activity_main);
+        acitivitymain.setBackgroundResource(R.drawable.background2);
+
         final EditText etEmail = (EditText) findViewById(R.id.edtEmail);
         final EditText etPass = (EditText) findViewById(R.id.edtPassword);
         final String sMail = etEmail.getText().toString();
@@ -41,6 +46,7 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
 
     }
 

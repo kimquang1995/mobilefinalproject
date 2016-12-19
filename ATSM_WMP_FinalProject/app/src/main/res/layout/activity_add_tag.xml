@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="?attr/colorBackgroundFloating"
-        tools:background="@android:color/holo_orange_light">
+        tools:background="@android:color/holo_orange_light"
+        android:id="@+id/gridlayout_addtag">
         <Button
             android:text="Back"
             android:layout_width="wrap_content"

@@ -78,8 +78,7 @@
         android:textColor="@android:color/darker_gray"
         android:hint="Type your email"
         android:layout_below="@+id/txttitle"
-        android:layout_alignStart="@+id/txttitle"
-        android:layout_alignEnd="@+id/txttitle" />
+        android:layout_alignStart="@+id/txttitle" />
 
 </RelativeLayout>
 
