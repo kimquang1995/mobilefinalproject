@@ -39,17 +39,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Login extends AppCompatActivity {
-    RelativeLayout acitivitymain;
     String sMail, sPass;
-
+    public  static final String ID_USER ="ID_USER";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_login);
-        // Set background
-        acitivitymain = (RelativeLayout) findViewById(R.id.activity_main);
-        acitivitymain.setBackgroundResource(R.drawable.background2);
-
         final EditText etEmail = (EditText) findViewById(R.id.edtEmail);
         final EditText etPass = (EditText) findViewById(R.id.edtPassword);
         findViewById(R.id.btnSignin).setOnClickListener(new View.OnClickListener() {
@@ -93,7 +88,9 @@ public class Login extends AppCompatActivity {
                JSONObject object = new JSONObject(s);
                 if (Integer.parseInt(object.getString("thanhcong"))==1)
                 {
+                    JSONObject objectUser = new JSONObject(object.getString("user"));
                     Intent intent = new Intent(Login.this, ViewTags.class);
+                    intent.putExtra(ID_USER,objectUser.getString("id"));
                     startActivity(intent);
                     finish();
                 }

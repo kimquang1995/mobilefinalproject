@@ -7,13 +7,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 public class ViewTasks extends AppCompatActivity {
-LinearLayout lnlViewtask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_tasks);
-        lnlViewtask = (LinearLayout)findViewById(R.id.LinearlayoutViewtask);
-        lnlViewtask.setBackgroundResource(R.drawable.backgroundaddtag1);
+
 
         findViewById(R.id.btnAddTask).setOnClickListener(new View.OnClickListener() {
             @Override

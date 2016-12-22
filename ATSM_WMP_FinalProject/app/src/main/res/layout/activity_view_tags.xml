@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:id="@+id/activity_view_tags">
-
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -15,7 +13,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="466dp"
-            android:id="@+id/lstAddTag" />
+            android:id="@+id/lvTags" />
 
         <Button
             android:layout_width="50dp"
