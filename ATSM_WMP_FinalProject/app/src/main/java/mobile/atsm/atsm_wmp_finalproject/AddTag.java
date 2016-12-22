@@ -36,15 +36,18 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
     ListView lv;
     ArrayList<User> userList;
     UserAdapter userAdapter;
-
+String ID_USER="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tag);
+        Intent intent = getIntent();
+        ID_USER = intent.getStringExtra(Login.ID_USER);
         findViewById(R.id.btnBackTag).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddTag.this, ViewTags.class);
+                intent.putExtra(Login.ID_USER,ID_USER);
                 startActivity(intent);
                 finish();
             }

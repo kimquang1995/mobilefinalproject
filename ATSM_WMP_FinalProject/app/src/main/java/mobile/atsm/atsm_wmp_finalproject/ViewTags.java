@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -32,12 +33,16 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import mobile.atsm.atsm_wmp_finalproject.Adapter.Tag;
+
 public class ViewTags extends AppCompatActivity {
 
     String ID_USER = "";
     String url = "http://www.stsmteam.esy.es/gettagbyID.php";
-    ArrayList<String> arr_Tag = new ArrayList<String>();
+    ArrayList<Tag> arr_Tag = new ArrayList<Tag>();
+    ArrayList<String> arr_nameTag = new ArrayList<String>();
     ListView lvTag;
+    public static final String ID_TAG = "ID_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,7 @@ public class ViewTags extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewTags.this, AddTag.class);
+                intent.putExtra(Login.ID_USER,ID_USER);
                 startActivity(intent);
                 finish();
             }
@@ -68,6 +74,7 @@ public class ViewTags extends AppCompatActivity {
             }
         });
     }
+
     class exeLoad extends AsyncTask<String, Integer, String> {
 
         @Override
@@ -85,12 +92,14 @@ public class ViewTags extends AppCompatActivity {
                     JSONArray arrJson = object.getJSONArray("tag");
                     for (int i = 0; i < arrJson.length(); i++) {
                         JSONObject jsObject = new JSONObject(arrJson.getString(i));
-                        arr_Tag.add(jsObject.getString("NameTag"));
+                        arr_Tag.add(new Tag(jsObject.getString("id"), jsObject.getString("name"), jsObject.getString("create_date")));
+                        arr_nameTag.add(jsObject.get("name").toString());
                     }
                     ArrayAdapter adapter = new ArrayAdapter(
                             getApplicationContext(),
                             android.R.layout.simple_list_item_1,
-                            arr_Tag){
+                            arr_nameTag) {
+                        @NonNull
                         @Override
                         public View getView(int position, View convertView, ViewGroup parent) {
                             View view = super.getView(position, convertView, parent);
@@ -100,6 +109,21 @@ public class ViewTags extends AppCompatActivity {
                         }
                     };
                     lvTag.setAdapter(adapter);
+                    lvTag.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            Tag tag = arr_Tag.get(position);
+                            Intent intent = new Intent(ViewTags.this, ViewTasks.class);
+                            intent.putExtra(ID_TAG, tag.getId_tag());
+                            intent.putExtra(Login.ID_USER, ID_USER);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
                 } else {
                     Toast.makeText(getApplicationContext(), "Email or Password is wrong", Toast.LENGTH_SHORT).show();
                 }
