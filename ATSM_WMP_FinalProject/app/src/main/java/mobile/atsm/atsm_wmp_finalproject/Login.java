@@ -47,14 +47,14 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.acitivity_login);
         final EditText etEmail = (EditText) findViewById(R.id.edtEmail);
         final EditText etPass = (EditText) findViewById(R.id.edtPassword);
-        Intent intent = getIntent();
+       /* Intent intent = getIntent();
         sMail =intent.getStringExtra("EMAIL");
         sPass =intent.getStringExtra("PASS");
         if(sMail.length()>0 && sPass.length()>0)
         {
             etEmail.setText(sMail);
             etPass.setText(sPass);
-        }
+        }*/
         findViewById(R.id.btnSignin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

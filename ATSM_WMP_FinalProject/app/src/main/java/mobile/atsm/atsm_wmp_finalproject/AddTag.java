@@ -31,12 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mobile.atsm.atsm_wmp_finalproject.Adapter.User;
+import mobile.atsm.atsm_wmp_finalproject.Adapter.UserAdapter;
 import mobile.atsm.atsm_wmp_finalproject.Adapter.UserAdapter_Task;
 
 public class AddTag extends AppCompatActivity implements android.widget.CompoundButton.OnCheckedChangeListener {
     ListView lv;
     ArrayList<User> userList;
-    UserAdapter_Task userAdapter;
+    UserAdapter userAdapter;
     String urlAddtag = "http://www.stsmteam.esy.es/insertTag.php";
     String urlAddDeliTag = "http://www.stsmteam.esy.es/insertdelitag.php";
     String urlGetallUser = "http://www.stsmteam.esy.es/getalluser.php";
@@ -156,7 +157,7 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
                         JSONObject jsonObject = array.getJSONObject(i);
                         userList.add(new User(jsonObject.getString("name").trim(), jsonObject.getString("id").trim(), jsonObject.getString("email").trim()));
                     }
-                    userAdapter = new UserAdapter_Task(userList, AddTag.this);
+                    userAdapter = new UserAdapter(userList, AddTag.this);
                     lv.setAdapter(userAdapter);
                 } else {
 

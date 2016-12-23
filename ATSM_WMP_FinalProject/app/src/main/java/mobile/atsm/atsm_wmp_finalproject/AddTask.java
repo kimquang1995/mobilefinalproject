@@ -73,17 +73,18 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
         //  Toast.makeText(getApplicationContext(),id_tag + " "+id_user,Toast.LENGTH_SHORT).show();
-        displayUserList();
         findViewById(R.id.btnBackTask).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddTask.this, ViewTasks.ViewTask.class);
+                Intent intent = new Intent(AddTask.this, ViewTasks.class);
                 intent.putExtra(Login.ID_USER,id_user);
                 intent.putExtra(ViewTags.ID_TAG,id_tag);
                 startActivity(intent);
                 finish();
             }
         });
+        displayUserList();
+
         findViewById(R.id.btnStartDate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
