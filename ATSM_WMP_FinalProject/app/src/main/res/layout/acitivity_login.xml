@@ -9,72 +9,68 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <Button
-        android:text="SIGN UP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btnSignin"
-        android:layout_alignRight="@+id/edtPassword"
-        android:layout_alignEnd="@+id/edtPassword"
-        android:id="@+id/btnSignup"
-        android:background="@android:color/holo_blue_bright"
-        android:textColor="@android:color/background_light" />
 
-    <TextView
-        android:text="Work Management"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txttitle"
-        android:textSize="40sp"
-        android:textColor="@color/colorAccent"
-        android:textAllCaps="false"
-        android:textIsSelectable="false"
-        android:layout_marginTop="25dp"
-        android:layout_alignParentTop="true" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="148dp"
+            android:textSize="40sp"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/logo"
+            android:layout_weight="0.59" />
+        <TextView
+            android:text="Work Management"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txttitle"
+            android:textSize="40sp"
+            android:textColor="@color/colorAccent" />
 
-    <CheckBox
-        android:text="Remember me"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ckbRemember"
-        android:textColor="@color/colorAccent"
-        android:layout_below="@+id/edtPassword"
-        android:layout_alignLeft="@+id/edtPassword"
-        android:layout_alignStart="@+id/edtPassword"
-        android:layout_marginTop="12dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/edtEmail"
+            android:textColor="@android:color/darker_gray"
+            android:hint="Type your email" />
 
-    <Button
-        android:text="Sign in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnSignin"
-        android:layout_below="@+id/ckbRemember"
-        android:layout_alignLeft="@+id/ckbRemember"
-        android:layout_alignStart="@+id/ckbRemember"
-        android:layout_marginTop="14dp"
-        android:background="@color/colorAccent"
-        android:textColor="@android:color/background_light" />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/edtEmail"
-        android:textColor="@android:color/darker_gray"
-        android:hint="Type your email"
-        android:layout_below="@+id/txttitle"
-        android:layout_alignStart="@+id/edtPassword" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/edtPassword"
+            android:hint="Password" />
+        <Button
+            android:text="Sign in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSignin"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
+        <Button
+            android:text="GET PASSOWRD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGetpass"
+            android:background="@android:color/holo_blue_bright"
+            android:textColor="@android:color/background_light" />
+        <Button
+            android:text="SIGN UP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSignup"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/background_light" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/edtPassword"
-        android:hint="Password"
-        android:layout_below="@+id/edtEmail"
-        android:layout_alignEnd="@+id/txttitle"
-        android:layout_marginEnd="44dp" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
