@@ -58,6 +58,8 @@ public class ViewTasks extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewTasks.this, AddTask.class);
+                intent.putExtra(Login.ID_USER,id_user);
+                intent.putExtra(ViewTags.ID_TAG,id_tag);
                 startActivity(intent);
                 finish();
             }
@@ -101,7 +103,7 @@ public class ViewTasks extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             JSONObject object = null;
             try {
                 object = new JSONObject(s);

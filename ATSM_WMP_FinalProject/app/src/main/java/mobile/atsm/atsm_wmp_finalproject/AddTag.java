@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,15 +29,14 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import mobile.atsm.atsm_wmp_finalproject.Adapter.User;
-import mobile.atsm.atsm_wmp_finalproject.Adapter.UserAdapter;
+import mobile.atsm.atsm_wmp_finalproject.Adapter.UserAdapter_Task;
 
 public class AddTag extends AppCompatActivity implements android.widget.CompoundButton.OnCheckedChangeListener {
     ListView lv;
     ArrayList<User> userList;
-    UserAdapter userAdapter;
+    UserAdapter_Task userAdapter;
     String urlAddtag = "http://www.stsmteam.esy.es/insertTag.php";
     String urlAddDeliTag = "http://www.stsmteam.esy.es/insertdelitag.php";
     String urlGetallUser = "http://www.stsmteam.esy.es/getalluser.php";
@@ -99,7 +96,7 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
                     userChecked.add(userList.get(i).getId());
                 }
             }
-            // Toast.makeText(getApplicationContext(),String.valueOf(userChecked.size()),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),String.valueOf(userChecked.size()),Toast.LENGTH_LONG).show();
         }
     }
 
@@ -159,7 +156,7 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
                         JSONObject jsonObject = array.getJSONObject(i);
                         userList.add(new User(jsonObject.getString("name").trim(), jsonObject.getString("id").trim(), jsonObject.getString("email").trim()));
                     }
-                    userAdapter = new UserAdapter(userList, AddTag.this);
+                    userAdapter = new UserAdapter_Task(userList, AddTag.this);
                     lv.setAdapter(userAdapter);
                 } else {
 
