@@ -40,6 +40,7 @@ public class ViewTasks extends AppCompatActivity {
     ListView lvTask;
     String url = "http://www.stsmteam.esy.es/gettask.php";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,4 +127,5 @@ public class ViewTasks extends AppCompatActivity {
 
         }
     }
+
 }

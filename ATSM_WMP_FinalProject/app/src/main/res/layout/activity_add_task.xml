@@ -3,7 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/linearlayoutaddtask">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/txtThongBao" />
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -21,6 +24,8 @@
             android:layout_height="50dp"
             android:id="@+id/btnCreateTask"
             android:layout_gravity="right" />
+
+
     </GridLayout>
 
     <EditText
