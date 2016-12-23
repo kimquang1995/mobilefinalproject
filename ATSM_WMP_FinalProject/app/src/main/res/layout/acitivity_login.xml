@@ -30,8 +30,7 @@
         android:textAllCaps="false"
         android:textIsSelectable="false"
         android:layout_marginTop="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true" />
 
     <CheckBox
         android:text="Remember me"

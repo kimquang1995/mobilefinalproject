@@ -42,10 +42,10 @@
         android:id="@+id/txvChooseStakeholder"
         android:textSize="18sp" />
 
-    <SearchView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/SearchView" />
+        android:id="@+id/txtThongBao" />
 
     <ListView
         android:layout_width="match_parent"

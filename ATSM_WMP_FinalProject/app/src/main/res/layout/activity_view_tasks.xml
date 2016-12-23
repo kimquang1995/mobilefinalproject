@@ -3,6 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/LinearlayoutViewtask">
+    <TextView
+        android:text="All TASKS YOU NEED DO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textColor="#9000ff"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -10,9 +18,8 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="466dp"
-            android:id="@+id/lstAddTask" />
-
+            android:layout_height="400dp"
+            android:id="@+id/lstTask" />
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -20,4 +27,5 @@
             android:layout_gravity="center"
             android:background="@android:drawable/ic_input_add" />
     </LinearLayout>
+
 </LinearLayout>

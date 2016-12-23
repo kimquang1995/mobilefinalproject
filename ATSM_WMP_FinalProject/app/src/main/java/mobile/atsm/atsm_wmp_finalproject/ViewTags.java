@@ -64,6 +64,16 @@ public class ViewTags extends AppCompatActivity {
                 finish();
             }
         });
+        lvTag.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Tag tag = arr_Tag.get(position);
+                Intent intent = new Intent(ViewTags.this, ViewTasks.class);
+                intent.putExtra(ID_TAG, tag.getId_tag());
+                intent.putExtra(Login.ID_USER, ID_USER);
+                startActivity(intent);
+            }
+        });
     }
 
     private void Load() {
@@ -73,6 +83,8 @@ public class ViewTags extends AppCompatActivity {
                 new exeLoad().execute(url, ID_USER);
             }
         });
+
+
     }
 
     class exeLoad extends AsyncTask<String, Integer, String> {
@@ -92,8 +104,8 @@ public class ViewTags extends AppCompatActivity {
                     JSONArray arrJson = object.getJSONArray("tag");
                     for (int i = 0; i < arrJson.length(); i++) {
                         JSONObject jsObject = new JSONObject(arrJson.getString(i));
-                        arr_Tag.add(new Tag(jsObject.getString("id"), jsObject.getString("name"), jsObject.getString("create_date")));
-                        arr_nameTag.add(jsObject.get("name").toString());
+                        arr_Tag.add(new Tag(jsObject.getString("id"), jsObject.getString("NameTag"), jsObject.getString("create_date")));
+                        arr_nameTag.add(jsObject.getString("NameTag"));
                     }
                     ArrayAdapter adapter = new ArrayAdapter(
                             getApplicationContext(),
@@ -109,21 +121,6 @@ public class ViewTags extends AppCompatActivity {
                         }
                     };
                     lvTag.setAdapter(adapter);
-                    lvTag.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            Tag tag = arr_Tag.get(position);
-                            Intent intent = new Intent(ViewTags.this, ViewTasks.class);
-                            intent.putExtra(ID_TAG, tag.getId_tag());
-                            intent.putExtra(Login.ID_USER, ID_USER);
-                            startActivity(intent);
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
                 } else {
                     Toast.makeText(getApplicationContext(), "Email or Password is wrong", Toast.LENGTH_SHORT).show();
                 }

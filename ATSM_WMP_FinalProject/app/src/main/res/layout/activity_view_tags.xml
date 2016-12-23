@@ -5,21 +5,22 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:id="@+id/activity_view_tags">
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:text="All TAGS YOU NEED DO"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textColor="#9000ff"/>
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="466dp"
+            android:layout_height="400dp"
             android:id="@+id/lvTags" />
-
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/btnAddTag"
             android:layout_gravity="center"
             android:background="@android:drawable/ic_input_add" />
-    </LinearLayout>
 </LinearLayout>

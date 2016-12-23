@@ -41,7 +41,7 @@ public class TaskAdapter extends ArrayAdapter<Task> {
        TaskViewHolder holder = new TaskViewHolder();
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.single_listuser_item, null);
+            v = inflater.inflate(R.layout.single_listtask_item, null);
             holder.id_task = (TextView) v.findViewById(R.id.txtID);
             holder.name_task = (TextView) v.findViewById(R.id.txtName);
             holder.start_date = (TextView) v.findViewById(R.id.txtStartdate);
@@ -54,9 +54,12 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         Task t = taskList.get(position);
         holder.id_task.setText("ID "+t.id_task);
         holder.name_task.setText(t.name_task);
-        holder.start_date.setText(t.start_date);
-        holder.start_date.setText(t.end_date);
-        holder.level.setText(t.level);
+        String[] sStart = t.start_date.split("\\s+");
+        holder.start_date.setText(sStart[0]+"\n"+sStart[1]);
+        String[] sEnd = t.end_date.split("\\s+");
+        holder.end_date.setText(sEnd[0]+"\n"+sEnd[1]);
+
+        holder.level.setText("Level "+t.level);
         return v;
     }
 }

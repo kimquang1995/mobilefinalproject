@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Task {
     public Task(String id_task, String name_task, String level, String start_date, String end_date) {
+        super();
         this.id_task = id_task;
         this.name_task = name_task;
         this.level = level;

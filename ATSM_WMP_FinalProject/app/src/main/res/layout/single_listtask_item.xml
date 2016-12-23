@@ -6,40 +6,46 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="198dp"
+        android:layout_width="170dp"
         android:layout_height="67dp">
 
         <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
+            android:text="Name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtID" />
+            android:id="@+id/txtName"
+            android:textColor="#ff0900"
+            android:textSize="20dp"/>
+        <TextView
+            android:text="Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtLevel"
+            android:textColor="#00ff4c"/>
 
         <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
+            android:text="ID"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtName" />
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtLevel" />
+            android:id="@+id/txtID"
+            android:textColor="#ff00ee"/>
     </LinearLayout>
 
     <TextView
-        android:text="TextView"
+        android:text="StartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtStartdate" />
+        android:id="@+id/txtStartdate"
+        android:textColor="#002aff"/>
     <TextView
         android:text="--->>"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:text="TextView"
+        android:text="EndDate"
         android:layout_width="285dp"
         android:layout_height="wrap_content"
-        android:id="@+id/txtEnddate" />
+        android:id="@+id/txtEnddate"
+        android:textColor="#ff0011"/>
 
 </LinearLayout>
