@@ -76,6 +76,11 @@ String email,pass,name;
             {
                 tvStatus.setTextColor(Color.BLUE);
                 tvStatus.setText("Congurations ! Register Successfully ");
+                Intent intent = new Intent(SignUp.this, Login.class);
+                intent.putExtra("EMAIL",email);
+                intent.putExtra("PASS",pass);
+                startActivity(intent);
+                finish();
 
             }
             else if(s.trim().equals("email is used"))
