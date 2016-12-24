@@ -50,7 +50,7 @@ String email,pass,name;
             @Override
             public void onClick(View v) {
                 email=etEmai.getText().toString().trim();
-                name=etName.getText().toString().trim();
+                name=etName.getText().toString().trim().toUpperCase();
                 pass=etPass.getText().toString().trim();
                 if(email.length()>0 && name.length()>0 && pass.length()>0) {
                     new exeSignUp().execute("http://www.stsmteam.esy.es/index.php", name, email, pass);
@@ -71,14 +71,12 @@ String email,pass,name;
 
         @Override
         protected void onPostExecute(String s) {
-          //  Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
-            if(s.trim().equalsIgnoreCase("success"))
+            Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
+            if(s.trim().equals("success"))
             {
                 tvStatus.setTextColor(Color.BLUE);
                 tvStatus.setText("Congurations ! Register Successfully ");
                 Intent intent = new Intent(SignUp.this, Login.class);
-                intent.putExtra("EMAIL",email);
-                intent.putExtra("PASS",pass);
                 startActivity(intent);
                 finish();
 

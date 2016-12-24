@@ -80,7 +80,6 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
                 intent.putExtra(Login.ID_USER,id_user);
                 intent.putExtra(ViewTags.ID_TAG,id_tag);
                 startActivity(intent);
-                finish();
             }
         });
         displayUserList();
@@ -166,8 +165,14 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
                 String start_date = txtStartDate.getText().toString();
                 String end_date = txtEndDate.getText().toString();
                 String level = dropdown.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(),""+name+" "+start_date+" "+end_date+" "+level+" "+id_tag,Toast.LENGTH_SHORT).show();
-                new exeInsertask().execute(urlAddtask, name,id_tag,start_date,end_date,level);
+                if(name.length()>0 && start_date.length()>0 && end_date.length()>0 && level.length() >0 && id_tag.length()>0) {
+                    new exeInsertask().execute(urlAddtask, name, id_tag, start_date, end_date, level);
+                    Intent intent = new Intent(AddTask.this, ViewTasks.class);
+                    startActivity(intent);
+                }else
+                {
+                    Toast.makeText(getApplicationContext(),"Please Input Fully",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

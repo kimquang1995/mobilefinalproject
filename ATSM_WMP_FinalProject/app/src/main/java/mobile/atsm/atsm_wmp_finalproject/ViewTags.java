@@ -1,9 +1,11 @@
 package mobile.atsm.atsm_wmp_finalproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,9 +41,11 @@ public class ViewTags extends AppCompatActivity {
 
     String ID_USER = "";
     String url = "http://www.stsmteam.esy.es/gettagbyID.php";
+    String urlDeletetag ="http://stsmteam.esy.es/deletetag.php";
     ArrayList<Tag> arr_Tag = new ArrayList<Tag>();
     ArrayList<String> arr_nameTag = new ArrayList<String>();
     ListView lvTag;
+    ArrayAdapter adapter;
     public static final String ID_TAG = "ID_TAG";
 
     @Override
@@ -53,13 +57,13 @@ public class ViewTags extends AppCompatActivity {
 
         Intent intent = getIntent();
         ID_USER = intent.getStringExtra(Login.ID_USER);
-        Toast.makeText(getApplicationContext(), intent.getStringExtra(Login.ID_USER), Toast.LENGTH_SHORT).show();
+        //     Toast.makeText(getApplicationContext(), intent.getStringExtra(Login.ID_USER), Toast.LENGTH_SHORT).show();
         Load();
         findViewById(R.id.btnAddTag).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewTags.this, AddTag.class);
-                intent.putExtra(Login.ID_USER,ID_USER);
+                intent.putExtra(Login.ID_USER, ID_USER);
                 startActivity(intent);
                 finish();
             }
@@ -74,17 +78,42 @@ public class ViewTags extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        lvTag.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), ID_TAG + ID_USER, Toast.LENGTH_SHORT).show();
+                Tag tag = arr_Tag.get(position);
+               final String id_tag = tag.id_tag;
+                final AlertDialog.Builder mydialog = new AlertDialog.Builder(ViewTags.this);
+                mydialog.setTitle("Review Action");
+                mydialog.setMessage("Are you want delete this ?");
+                mydialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //  Toast.makeText(getApplicationContext(), "YES", Toast.LENGTH_SHORT).show();
+
+                        new exedeletetag().execute(urlDeletetag,ID_USER,id_tag);
+
+                    }
+                });
+                mydialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //  Toast.makeText(getApplicationContext(), "NO", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                mydialog.show();
+                return true;
+            }
+        });
     }
 
     private void Load() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
                 new exeLoad().execute(url, ID_USER);
-            }
-        });
-
-
     }
 
     class exeLoad extends AsyncTask<String, Integer, String> {
@@ -107,7 +136,7 @@ public class ViewTags extends AppCompatActivity {
                         arr_Tag.add(new Tag(jsObject.getString("id"), jsObject.getString("NameTag"), jsObject.getString("create_date")));
                         arr_nameTag.add(jsObject.getString("NameTag"));
                     }
-                    ArrayAdapter adapter = new ArrayAdapter(
+                    adapter = new ArrayAdapter(
                             getApplicationContext(),
                             android.R.layout.simple_list_item_1,
                             arr_nameTag) {
@@ -129,7 +158,54 @@ public class ViewTags extends AppCompatActivity {
             }
         }
     }
+    class exedeletetag extends AsyncTask<String,Integer,String>
+    {
 
+        @Override
+        protected String doInBackground(String... params) {
+            return deleteTag(params[0],params[1],params[2]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if(s.trim().equals("success"))
+            {
+                finish();
+                startActivity(getIntent());
+                Load();
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Can't Delete", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    private String deleteTag(String url, String id_user,String id_tag) {
+        HttpClient httpClient = new DefaultHttpClient();
+        // URL cua trang nhan Request
+        HttpPost httpPost = new HttpPost(url);
+        //Cac tham so truyen
+        List nameValuePair = new ArrayList(2);
+        nameValuePair.add(new BasicNameValuePair("id_user",id_user ));
+        nameValuePair.add(new BasicNameValuePair("id_tag",id_tag ));
+        //Encode Post data
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String kq = "";
+        try {
+            HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+            kq = EntityUtils.toString(entity);
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return kq;
+    }
     private String makeLoad(String url, String id) {
         HttpClient httpClient = new DefaultHttpClient();
         // URL cua trang nhan Request

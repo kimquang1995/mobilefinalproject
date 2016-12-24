@@ -58,7 +58,6 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
                 Intent intent = new Intent(AddTag.this, ViewTags.class);
                 intent.putExtra(Login.ID_USER, ID_USER);
                 startActivity(intent);
-                finish();
             }
         });
         lv = (ListView) findViewById(R.id.lstUser);
@@ -97,7 +96,7 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
                     userChecked.add(userList.get(i).getId());
                 }
             }
-            Toast.makeText(getApplicationContext(),String.valueOf(userChecked.size()),Toast.LENGTH_LONG).show();
+          //  Toast.makeText(getApplicationContext(),String.valueOf(userChecked.size()),Toast.LENGTH_LONG).show();
         }
     }
 
@@ -110,13 +109,17 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             try {
+                new exeInsertDeliTag().execute(urlAddDeliTag,ID_USER , s.trim());
                 for (int i = 0; i < userChecked.size(); i++) {
                     new exeInsertDeliTag().execute(urlAddDeliTag, userChecked.get(i).trim(), s.trim());
                 }
                 tvKQ.setTextColor(Color.BLUE);
                 tvKQ.setText("Insert Successfull");
+                Intent intent = new Intent(AddTag.this, ViewTags.class);
+                intent.putExtra(Login.ID_USER, ID_USER);
+                startActivity(intent);
             } catch (Exception e) {
                 tvKQ.setTextColor(Color.RED);
                 tvKQ.setText("Insert Failure,Please try again");
