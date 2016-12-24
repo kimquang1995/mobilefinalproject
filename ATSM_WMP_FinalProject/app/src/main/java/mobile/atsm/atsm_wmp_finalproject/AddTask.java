@@ -167,8 +167,7 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
                 String level = dropdown.getSelectedItem().toString();
                 if(name.length()>0 && start_date.length()>0 && end_date.length()>0 && level.length() >0 && id_tag.length()>0) {
                     new exeInsertask().execute(urlAddtask, name, id_tag, start_date, end_date, level);
-                    Intent intent = new Intent(AddTask.this, ViewTasks.class);
-                    startActivity(intent);
+
                 }else
                 {
                     Toast.makeText(getApplicationContext(),"Please Input Fully",Toast.LENGTH_SHORT).show();
@@ -244,11 +243,24 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
         protected void onPostExecute(String s) {
            // Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             try {
+                boolean check = true;
                 for (int i = 0; i < userChecked.size(); i++) {
+                    if(userChecked.get(i).equals(id_user))
+                    {
+                        check = false;
+                    }
                     new exeInsertDeliTask().execute(urlAddDeliTask, userChecked.get(i).trim(), s.trim());
+                }
+                if(check)
+                {
+                    new exeInsertDeliTask().execute(urlAddDeliTask, id_user, s.trim());
                 }
                 tvKQ.setTextColor(Color.BLUE);
                 tvKQ.setText("Insert Successfull");
+                Intent intent = new Intent(AddTask.this, ViewTasks.class);
+                intent.putExtra(Login.ID_USER,id_user);
+                intent.putExtra(ViewTags.ID_TAG,id_tag);
+                startActivity(intent);
             } catch (Exception e) {
                 tvKQ.setTextColor(Color.RED);
                 tvKQ.setText("Insert Failure,Please try again");
@@ -290,7 +302,7 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 

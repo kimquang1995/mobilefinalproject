@@ -82,7 +82,7 @@ public class ViewTags extends AppCompatActivity {
         lvTag.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), ID_TAG + ID_USER, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(), ID_TAG + ID_USER, Toast.LENGTH_SHORT).show();
                 Tag tag = arr_Tag.get(position);
                final String id_tag = tag.id_tag;
                 final AlertDialog.Builder mydialog = new AlertDialog.Builder(ViewTags.this);

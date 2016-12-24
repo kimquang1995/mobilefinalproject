@@ -111,9 +111,17 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
         protected void onPostExecute(String s) {
           //  Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             try {
-                new exeInsertDeliTag().execute(urlAddDeliTag,ID_USER , s.trim());
+                boolean check = true;
                 for (int i = 0; i < userChecked.size(); i++) {
+                    if(userChecked.get(i).equals(ID_USER))
+                    {
+                        check= false;
+                    }
                     new exeInsertDeliTag().execute(urlAddDeliTag, userChecked.get(i).trim(), s.trim());
+                }
+                if(check)
+                {
+                    new exeInsertDeliTag().execute(urlAddDeliTag,ID_USER , s.trim());
                 }
                 tvKQ.setTextColor(Color.BLUE);
                 tvKQ.setText("Insert Successfull");
@@ -137,7 +145,7 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         }
     }
 

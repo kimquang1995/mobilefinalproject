@@ -1,11 +1,14 @@
 package mobile.atsm.atsm_wmp_finalproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -29,6 +32,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import mobile.atsm.atsm_wmp_finalproject.Adapter.Tag;
 import mobile.atsm.atsm_wmp_finalproject.Adapter.Task;
 import mobile.atsm.atsm_wmp_finalproject.Adapter.TaskAdapter;
 
@@ -39,7 +43,7 @@ public class ViewTasks extends AppCompatActivity {
     TaskAdapter Taskadapter;
     ListView lvTask;
     String url = "http://www.stsmteam.esy.es/gettask.php";
-
+    String urlDeletetask = "http://stsmteam.esy.es/deletetask.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +63,42 @@ public class ViewTasks extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewTasks.this, AddTask.class);
-                intent.putExtra(Login.ID_USER,id_user);
-                intent.putExtra(ViewTags.ID_TAG,id_tag);
+                intent.putExtra(Login.ID_USER, id_user);
+                intent.putExtra(ViewTags.ID_TAG, id_tag);
                 startActivity(intent);
                 finish();
             }
         });
+        lvTask.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Task task = taskList.get(position);
+                final String id_tag = task.id_task;
+                final AlertDialog.Builder mydialog = new AlertDialog.Builder(ViewTasks.this);
+                mydialog.setTitle("Review Action");
+                mydialog.setMessage("Are you want delete this ?");
+                mydialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //  Toast.makeText(getApplicationContext(), "YES", Toast.LENGTH_SHORT).show();
+
+                        new exedeletetask().execute(urlDeletetask,id_user,id_tag);
+
+                    }
+                });
+                mydialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //  Toast.makeText(getApplicationContext(), "NO", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                mydialog.show();
+                return true;
+            }
+        });
     }
 
     private String makeLoad(String url, String id_user, String id_tag) {
@@ -104,7 +137,7 @@ public class ViewTasks extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-           // Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             JSONObject object = null;
             try {
                 object = new JSONObject(s);
@@ -126,6 +159,57 @@ public class ViewTasks extends AppCompatActivity {
             }
 
         }
+    }
+
+    class exedeletetask extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            return deleteTask(params[0], params[1], params[2]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (s.trim().equals("success")) {
+                finish();
+                startActivity(getIntent());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new ViewTask().execute(url, id_user, id_tag);
+                    }
+                });
+            } else {
+                Toast.makeText(getApplicationContext(), "Can't Delete", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private String deleteTask(String url, String id_user, String id_task) {
+        HttpClient httpClient = new DefaultHttpClient();
+        // URL cua trang nhan Request
+        HttpPost httpPost = new HttpPost(url);
+        //Cac tham so truyen
+        List nameValuePair = new ArrayList(2);
+        nameValuePair.add(new BasicNameValuePair("id_user", id_user));
+        nameValuePair.add(new BasicNameValuePair("id_task", id_task));
+        //Encode Post data
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String kq = "";
+        try {
+            HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+            kq = EntityUtils.toString(entity);
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return kq;
     }
 
 }
