@@ -48,7 +48,7 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
     ListView lv;
     ArrayList<User> userList;
     UserAdapter_Task userAdapter;
-    ArrayList<String> userChecked;
+    ArrayList<String> userChecked = new ArrayList<String>();
     String id_user = "";
     String id_tag = "";
     TextView txtStartDate, txtEndDate;
@@ -165,7 +165,7 @@ public class AddTask extends AppCompatActivity implements android.widget.Compoun
                 String start_date = txtStartDate.getText().toString();
                 String end_date = txtEndDate.getText().toString();
                 String level = dropdown.getSelectedItem().toString();
-                if(name.length()>0 && start_date.length()>0 && end_date.length()>0 && level.length() >0 && id_tag.length()>0) {
+                if(name.length()>0 && !start_date.equals("Start Date") && !end_date.equals("End Date") && level.length() >0 && id_tag.length()>0) {
                     new exeInsertask().execute(urlAddtask, name, id_tag, start_date, end_date, level);
 
                 }else

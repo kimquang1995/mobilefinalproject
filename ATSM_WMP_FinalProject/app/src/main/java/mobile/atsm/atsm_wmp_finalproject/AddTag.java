@@ -41,7 +41,7 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
     String urlAddtag = "http://www.stsmteam.esy.es/insertTag.php";
     String urlAddDeliTag = "http://www.stsmteam.esy.es/insertdelitag.php";
     String urlGetallUser = "http://www.stsmteam.esy.es/getalluser.php";
-    ArrayList<String> userChecked;
+    ArrayList<String> userChecked = new ArrayList<String>();
     String ID_USER = "";
     TextView tvKQ;
     @Override
@@ -65,11 +65,9 @@ public class AddTag extends AppCompatActivity implements android.widget.Compound
         findViewById(R.id.btnCreateTag).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userChecked.size() > 0) {
+
                     new exeInsertag().execute(urlAddtag, edtName.getText().toString().toUpperCase());
-                } else {
-                    Toast.makeText(getApplicationContext(), "please select stakeholder", Toast.LENGTH_LONG).show();
-                }
+
             }
         });
     }

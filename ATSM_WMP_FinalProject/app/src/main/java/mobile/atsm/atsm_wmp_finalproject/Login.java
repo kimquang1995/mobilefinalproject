@@ -79,7 +79,14 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
+findViewById(R.id.btnGetpass).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(Login.this, GetPassword.class);
+        startActivity(intent);
+        finish();
+    }
+});
     }
 
     class exe_Login extends AsyncTask<String, Integer, String> {
