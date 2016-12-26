@@ -54,7 +54,7 @@
             android:id="@+id/btnSignin"
             android:background="@color/colorAccent"
             android:textColor="@android:color/background_light" />
-        <Button
+       <Button
             android:text="GET PASSOWRD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -16,14 +16,18 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/btnBackTask"
-            android:layout_gravity="left"/>
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
+        android:textColor="@android:color/background_light" />
 
         <Button
             android:text="Create"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/btnCreateTask"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
 
 
     </GridLayout>
@@ -47,13 +51,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txvStartDate"
+            android:textSize="18sp"
             android:layout_weight="1.01" />
 
         <Button
-            android:text="Date"
+            android:text="Select Date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnStartDate" />
+            android:layout_height="30dp"
+            android:id="@+id/btnStartDate" android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -70,10 +76,11 @@
             android:textSize="18sp" />
 
         <Button
-            android:text="Date"
+            android:text="Select Date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnEndDate" />
+            android:layout_height="30dp"
+            android:id="@+id/btnEndDate" android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

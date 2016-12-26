@@ -13,14 +13,18 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/btnSaveViewTask"
-            android:layout_gravity="left"/>
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
 
         <Button
             android:text="Cancel"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/btnCancelTaskView"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
     </GridLayout>
 
     <EditText

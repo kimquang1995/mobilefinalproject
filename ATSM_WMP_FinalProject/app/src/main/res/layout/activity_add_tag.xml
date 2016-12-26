@@ -17,14 +17,18 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/btnBackTag"
-            android:layout_gravity="left" />
+            android:layout_gravity="left"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
 
         <Button
             android:text="Create"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/btnCreateTag"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
     </GridLayout>
 
     <EditText

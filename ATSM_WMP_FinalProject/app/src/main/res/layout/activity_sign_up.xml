@@ -52,12 +52,14 @@
             android:text="Create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSignUp" />
+            android:id="@+id/btnSignUp" android:background="@color/colorPrimary"
+            android:textColor="@android:color/background_light" />
 
         <Button
             android:text="Cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnCancelSignUp" />
+            android:id="@+id/btnCancelSignUp" android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 </RelativeLayout>
